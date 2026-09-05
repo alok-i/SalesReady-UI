@@ -31,7 +31,7 @@ Open [http://localhost:3000](http://localhost:3000). Demo credentials are pre-fi
 
 Set the server-only `API_URL` to the backend `/v1` root. It defaults to `http://localhost:3001/v1`, allowing Next.js to remain on port 3000. Authentication tokens stay in HTTP-only cookies and browser requests go through the same-origin Next.js API boundary.
 
-Platform super admin: `/platform` (seeded as `superadmin@salesready.ai` / `DemoPass123!`). Customer org admin: `/manager`. Rep: `/rep`.
+Customer org admin: `/manager`. Rep: `/rep`.
 
 ## Verification
 
