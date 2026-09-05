@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SalesReadyAI frontend
 
-## Getting Started
+A role-based MVP for sales onboarding and readiness. Managers build a trusted Company Brain, create 15-day programs, monitor reps, and certify readiness. Reps complete lessons, assessments, AI interviews, and roleplays with evidence-based feedback.
 
-First, run the development server:
+## Getting started
 
-```bash
+Requires Node.js 20+.
+
+```sh
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Demo credentials are pre-filled.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo routes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Auth: `/login`, `/invite`
+- Manager: `/manager`, `/manager/company`, `/manager/setup`, `/manager/knowledge`, `/manager/research`, `/manager/programs`, `/manager/reps`, `/manager/report`
+- Rep: `/rep`, `/rep/learn`, `/rep/assessment`, `/rep/interview`, `/rep/roleplay`, `/rep/feedback`, `/rep/progress`
 
-## Learn More
+## Architecture
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js App Router with manager, rep, and auth route groups
+- TypeScript and Tailwind CSS v4
+- TanStack Query for server-state integration
+- React Hook Form and Zod for validated forms
+- `src/lib/api.ts` provides the typed backend boundary and optional Zod response validation
+- Seeded data in `src/lib/demo-data.ts` keeps every MVP screen renderable
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Set the server-only `API_URL` to the backend `/v1` root. It defaults to `http://localhost:3001/v1`, allowing Next.js to remain on port 3000. Authentication tokens stay in HTTP-only cookies and browser requests go through the same-origin Next.js API boundary.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Platform super admin: `/platform` (seeded as `superadmin@salesready.ai` / `DemoPass123!`). Customer org admin: `/manager`. Rep: `/rep`.
 
-## Deploy on Vercel
+## Verification
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```sh
+npm run lint
+npm run build
+```
